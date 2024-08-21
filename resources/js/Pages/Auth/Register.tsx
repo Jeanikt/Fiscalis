@@ -1,113 +1,211 @@
-import { FormEventHandler } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { FormEventHandler, useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/shadcn/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/shadcn/ui/card";
+import { Input } from "@/shadcn/ui/input";
+import { Label } from "@/shadcn/ui/label";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Register() {
+export default function RegisterScreen() {
+    const [showPassword, setShowPassword] = useState(false);
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
     });
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        post(route('register'), {
-            onFinish: () => reset('password', 'password_confirmation'),
+        post(route("register"), {
+            onFinish: () => reset("password", "password_confirmation"),
         });
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <>
+            <Head title="Sign up" />
+            <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+                {/* Background with gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-emerald-800 to-black opacity-50 blur-md z-0"></div>
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
+                {/* Background with modular shapes */}
+                <svg
+                    viewBox="0 0 1440 800"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    preserveAspectRatio="none"
+                >
+                    <defs>
+                        <linearGradient
+                            id="grad1"
+                            x1="0%"
+                            y1="0%"
+                            x2="100%"
+                            y2="100%"
+                        >
+                            <stop
+                                offset="0%"
+                                style={{
+                                    stopColor: "#1F9B77",
+                                    stopOpacity: 1,
+                                }}
+                            />
+                            <stop
+                                offset="100%"
+                                style={{
+                                    stopColor: "#004d60",
+                                    stopOpacity: 1,
+                                }}
+                            />
+                        </linearGradient>
+                    </defs>
+                    <path
+                        fill="url(#grad1)"
+                        d="M0,0 L0,800 L1440,800 L1440,0 C1200,100 200,600 0,0 Z"
                     />
+                </svg>
 
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                    >
-                        Already registered?
-                    </Link>
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
+                {/* Main content */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="relative z-10"
+                >
+                    <Card className="w-full max-w-md bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg border-none p-10">
+                        <CardHeader>
+                            <CardTitle className="text-2xl text-center text-white">
+                                Create your Fiscalis account
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <form onSubmit={submit}>
+                                <div className="space-y-6">
+                                    <div className="space-y-3">
+                                        <Label
+                                            htmlFor="name"
+                                            className="text-white"
+                                        >
+                                            Full Name
+                                        </Label>
+                                        <Input
+                                            id="name"
+                                            type="text"
+                                            placeholder="Enter your full name"
+                                            required
+                                            value={data.name}
+                                            onChange={(e) =>
+                                                setData("name", e.target.value)
+                                            }
+                                            className="bg-white bg-opacity-20 text-white placeholder-white"
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <Label
+                                            htmlFor="email"
+                                            className="text-white"
+                                        >
+                                            Email
+                                        </Label>
+                                        <Input
+                                            id="email"
+                                            type="email"
+                                            placeholder="Enter your email"
+                                            required
+                                            value={data.email}
+                                            onChange={(e) =>
+                                                setData("email", e.target.value)
+                                            }
+                                            className="bg-white bg-opacity-20 text-white placeholder-white"
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <Label
+                                            htmlFor="password"
+                                            className="text-white"
+                                        >
+                                            Password
+                                        </Label>
+                                        <div className="relative">
+                                            <Input
+                                                id="password"
+                                                type={
+                                                    showPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
+                                                placeholder="Create a password"
+                                                required
+                                                value={data.password}
+                                                onChange={(e) =>
+                                                    setData(
+                                                        "password",
+                                                        e.target.value
+                                                    )
+                                                }
+                                                className="bg-white bg-opacity-20 text-white placeholder-white"
+                                            />
+                                            <Button
+                                                type="button"
+                                                variant="ghost"
+                                                size="sm"
+                                                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                                                onClick={() =>
+                                                    setShowPassword(
+                                                        !showPassword
+                                                    )
+                                                }
+                                            >
+                                                {showPassword ? (
+                                                    <EyeOffIcon className="h-4 w-4 text-white" />
+                                                ) : (
+                                                    <EyeIcon className="h-4 w-4 text-white" />
+                                                )}
+                                            </Button>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <Label
+                                            htmlFor="confirmPassword"
+                                            className="text-white"
+                                        >
+                                            Confirm Password
+                                        </Label>
+                                        <Input
+                                            id="confirmPassword"
+                                            type="password"
+                                            placeholder="Confirm your password"
+                                            required
+                                            value={data.password_confirmation}
+                                            onChange={(e) =>
+                                                setData(
+                                                    "password_confirmation",
+                                                    e.target.value
+                                                )
+                                            }
+                                            className="bg-white bg-opacity-20 text-white placeholder-white"
+                                        />
+                                    </div>
+                                    <Button
+                                        type="submit"
+                                        className="w-full bg-blue-600 text-white"
+                                    >
+                                        Create Account
+                                    </Button>
+                                </div>
+                            </form>
+                            <div className="mt-6 text-center text-sm text-white">
+                                Already have an account?{" "}
+                                <Link href="/login" className="hover:underline">
+                                    Login
+                                </Link>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </motion.div>
+            </div>
+        </>
     );
 }

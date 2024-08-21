@@ -163,7 +163,7 @@ export default function WelcomeScreen() {
                             href="https://github.com/Jeanikt/Fiscalis"
                             className="relative z-10"
                         >
-                            <Button className="bg-transparent border border-white text-white flex items-center gap-2">
+                            <Button className="bg-transparent  text-white flex items-center gap-2">
                                 <FaGithub className="text-xl" />
                                 GitHub
                             </Button>
@@ -172,7 +172,7 @@ export default function WelcomeScreen() {
                             href="https://www.linkedin.com/in/jeanikt"
                             className="relative z-10"
                         >
-                            <Button className="bg-transparent border border-white text-white flex items-center gap-2">
+                            <Button className="bg-transparent  text-white flex items-center gap-2">
                                 <FaLinkedin className="text-xl" />
                                 LinkedIn
                             </Button>
@@ -181,7 +181,7 @@ export default function WelcomeScreen() {
                             href="https://www.instagram.com/jewknd/"
                             className="relative z-10"
                         >
-                            <Button className="bg-transparent border border-white text-white flex items-center gap-2">
+                            <Button className="bg-transparent  text-white flex items-center gap-2">
                                 <FaInstagram className="text-xl" />
                                 Instagram
                             </Button>
