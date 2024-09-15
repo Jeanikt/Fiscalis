@@ -36,8 +36,8 @@ export default function LoginScreen() {
                         <defs>
                             <linearGradient
                                 id="grad1"
-                                x1="0%"
-                                y1="0%"
+                                x1="100%"
+                                y1="100%"
                                 x2="100%"
                                 y2="100%"
                             >
@@ -59,7 +59,7 @@ export default function LoginScreen() {
                         </defs>
                         <path
                             fill="url(#grad1)"
-                            d="M0,0 L0,800 L1440,800 L1440,0 C1200,100 200,600 0,0 Z"
+                            d="M0,0 L0,800 L1440,800 L1440,0 C1200,600 700,100 0,0 Z"
                         />
                     </svg>
                 </div>

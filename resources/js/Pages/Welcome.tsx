@@ -42,8 +42,8 @@ export default function WelcomeScreen() {
                         <defs>
                             <linearGradient
                                 id="grad1"
-                                x1="0%"
-                                y1="0%"
+                                x1="100%"
+                                y1="100%"
                                 x2="100%"
                                 y2="100%"
                             >
@@ -169,7 +169,7 @@ export default function WelcomeScreen() {
                             </Button>
                         </Link>
                         <Link
-                            href="https://www.linkedin.com/in/jeanikt"
+                            href="https://www.linkedin.com/in/jeanfoliveira"
                             className="relative z-10"
                         >
                             <Button className="bg-transparent  text-white flex items-center gap-2">
